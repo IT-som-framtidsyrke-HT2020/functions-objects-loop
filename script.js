@@ -20,7 +20,7 @@ console.log(age);
 
 // lets calculate how many years a person has left until retirement
 // we need more code and therefore back to use code block
-const yearUnitlRetirement = (birthYear) => {
+const yearUnitlRetirement = birthYear => {
     const age = 2020 - birthYear;
     const retirement = 65 - age;
     return retirement;
@@ -37,7 +37,7 @@ console.log(`You have ${yearRetirement} until you retire`);
 // when u add more lines of code and more parameter it gets more complex
 // and you loose the advantage of arrow functions
 // so what to use? 
-// should i use arrow funtions everywhere?=
+// should i use arrow functions everywhere?=
 // no because arrow functons doesnt have the keyword this, and you will learn why we should use this
 // sometimes if you look further down 
 
@@ -85,6 +85,7 @@ const helenaOld = {
   lastName: "Johansson",
   age: 2020 - 1985,
   job: "developer",
+  dog: ["Tore", "Clementine", "Doris"]
 };
 
 // lets also learn to use dot and bracket notation to add new props to the object
@@ -100,9 +101,9 @@ console.log(helenaOld);
 // hint: need to use multiple dots to get the number of dogs
 
 // solution
-//console.log(
-//  `${helena.firstName} has ${helena.dog.length} dogs, and her youngest dog is called ${helena.dog[2]}`
-//);
+console.log(
+  `${helena.firstName} has ${helena.dog.length} dogs, and her youngest dog is called ${helena.dog[2]}`
+);
 // first one is simple, next one we use dot length to get how many elements in the array and the
 // last one we choose which element we want in the array and remember that arrays starta t 0
 // the dot here is an operator
@@ -215,7 +216,7 @@ for (let rep = 1; rep <= 10; rep++) {
 // and we build the string dynamically
 
 for (let rep = 1; rep <= 10; rep++) {
-  console.log(`Lifting weights repetition ${rep}`)
+  console.log(`Lifting weights repetition ${rep}`);
 }
 
 // in order to not repeat your code over and over again we used a for loop
@@ -229,7 +230,7 @@ for (let rep = 1; rep <= 10; rep++) {
 
 // most use cases of for loops is to loop through an array
 
-const helena = [
+const hoelena = [
     'Helena',
     'Johansson',
     2020 - 1985,
@@ -242,8 +243,8 @@ const helena = [
 // we need to update the count by one therefor i++
 // if we wuldnt use a for loop we would do like this
 // console.log(helenaArray[0]) and so on...
-for(let i = 0; i < 5 ; i++) {
-    // one issue is that we hardcoded the length to 5
+for(let i = 0; i < 4 ; i++) {
+    // change to i < helena.length to get dynamic value
     // what happens if we add an element to the array?
     // it will not print that position..
     // we should compute this value = get it from js itself.
@@ -270,7 +271,7 @@ for (let i = 0; i < helena.length; i++) {
     console.log(helena[i], typeof helena[i]);
 
     // filling array
-    types[i] = typeof helena[i];
+    //types[i] = typeof helena[i];
     // we can use push which is a bit cleaner
     types.push(typeof helena[i]);
 }
@@ -281,4 +282,113 @@ console.log(types);
 //for (let i = 0; i < helena.length; i++) {
 //   console.log(helena[i]);
 //}
+
+
+// CONTINUE & BREAK
+
+// CONTINUE
+// continue is used o exit the current iteration in the loop and go the next one.
+
+const helena = [
+    'Helena',
+    'Johansson',
+    2020 - 1985,
+    'developer',
+]
+
+console.log('ONLY STRINGS');
+for (let i = 0; i < helena.length; i++) {
+    if (typeof helena[i] !== 'string') continue;
+    // if the current index of Helena is not a string then skip this
+    // and move on to next iteration
+    console.log(helena[i], typeof helena[i]);
+}
+
+
+ // BREAK
+
+ const helena = [
+    2020 - 1985,
+    'Helena',
+    'Johansson',
+    'developer',
+]
+
+ // break completely terminates the whole
+ console.log('BREAK WITH NUMBERS');
+ for (let i = 0; i < helena.length; i++) {
+     if (typeof helena[i] === 'number') break;
+     // if the current iteration is not a string skip this and move to the next iteration
+
+     console.log(helena[i], typeof helena[i]);
+ }
+
+// when the number is found the loop is terminated and nothing more gets printed
+// different from continue which doesnt terminate the loop
+
+
+// LOOP ARRAY BACKWARDS 
+
+const helena = [
+    'Helena', // 0
+    2020 - 1985,
+    'Johansson',
+    'developer', // 3
+]
+
+//console.log(helena.length);
+
+for (let i = helena.length -1; i >= 0; i--) {
+    console.log(helena[i]);
+}
+
+
+// LOOP INSIDE LOOP
+
+// lets say that we have 3 different exercises which we want repeat 5 times each
+for (let exercise = 1; exercise < 4; exercise++) {
+    console.log(`---Starting exercise ${exercise}--`);
+
+    // now we need a loop inside the loop so we xan do each exercise 5 reps
+    for (let rep = 1; rep < 6; rep++) {
+        console.log(`Exercise ${exercise}: Lifting weight ${rep}`);
+    }
+}
+
+
+// WHILE LOOP
+
+// another way to loop (iterate)
+// we need the same components as with the for loop
+
+for (let rep = 1; rep <= 10; rep++) {
+    console.log(`Lifting weight ${rep}`);
+}
+// for loop
+
+let rep = 1; // this is the variable
+while (rep <= 10) {
+    // this will run while the condition is true
+    console.log(`Lifting weight repetition ${rep}`);
+    rep++;
+}
 */
+
+// roll a dice and we want the dice to keep rolling until we get a 6
+// so we do not know when we roll the dice / how long the loop should run
+// therefor we do not need a counter
+
+let dice = Math.trunc(Math.random() *  6) +1;
+// this give us a random number
+console.log(dice);
+
+while (dice !== 6) {
+    // condition is not 6 so as soon as the value is 6 it will stop
+    console.log(`You rolled ${dice}`);
+    // right now the loop would run forever and our browser would crash
+    dice = Math.trunc(Math.random() * 6) +1;
+    // here we create a new number and the loop runs again
+    if (dice === 6) {
+        console.log('Loop is about to end...');
+    }
+}
